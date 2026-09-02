@@ -51,7 +51,8 @@ test('rich-card matrix keeps payment, contact, location, file and video geometry
   await page.reload()
   await expect(page.getByText('已保存到此浏览器')).toBeVisible()
   await stabilize(page)
-  await expect(page.getByTestId('chat-canvas')).toHaveScreenshot('rich-card-matrix.png')
+  const snapshotName = process.platform === 'linux' ? 'rich-card-matrix-linux.png' : 'rich-card-matrix.png'
+  await expect(page.getByTestId('chat-canvas')).toHaveScreenshot(snapshotName)
 })
 
 test('opt-in iOS microstates retain a deterministic canvas baseline', async ({ page }) => {
