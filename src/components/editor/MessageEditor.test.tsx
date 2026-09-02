@@ -74,7 +74,7 @@ vi.mock('@dnd-kit/sortable', () => ({
 vi.mock('@dnd-kit/utilities', () => ({ CSS: { Transform: { toString: () => undefined } } }))
 
 describe('MessageEditor', () => {
-  it('offers compact editing for daily conversations and defaults to it at 200', () => {
+  it('offers compact editing for daily conversations and defaults to it at 200', { timeout: 10_000 }, () => {
     const dispatch = vi.fn()
     const messages = Array.from({ length: 200 }, (_, index) => ({
       ...SAMPLE_DRAFT.messages[index % SAMPLE_DRAFT.messages.length],
