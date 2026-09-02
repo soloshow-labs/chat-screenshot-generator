@@ -78,6 +78,26 @@
 .backupButton:enabled:hover { text-decoration: underline; }
 .backupButton:disabled { color: var(--text-secondary); }
 
+.githubLink {
+  display: inline-flex;
+  min-height: 20px;
+  align-items: center;
+  gap: 4px;
+  color: var(--text-secondary);
+  text-decoration: none;
+  white-space: nowrap;
+}
+
+.githubLink:hover { color: var(--brand); }
+.githubLink:focus-visible { outline: 2px solid var(--link); outline-offset: 3px; border-radius: 3px; }
+.githubMark {
+  width: 15px;
+  height: 15px;
+  flex: 0 0 auto;
+  background: currentColor;
+  mask: url('./assets/github-mark.svg') center / contain no-repeat;
+}
+
 .storageInfo { position: relative; }
 .storageInfo summary { cursor: pointer; white-space: nowrap; }
 .storageInfo summary::marker { font-size: 9px; }
@@ -310,6 +330,8 @@
   .moreActions summary svg { display: none; }
   .storageInfo { position: static; }
   .storagePopover { top: 100%; left: 14px; right: 14px; width: auto; }
+  .githubLink { min-width: 28px; min-height: 28px; justify-content: center; }
+  .githubLabel { display: none; }
 }
 
 @media (max-width: 520px) {

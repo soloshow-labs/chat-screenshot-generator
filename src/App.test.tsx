@@ -28,6 +28,16 @@ describe('App', () => {
     expect(screen.getByRole('button', { name: '导出 PNG' })).toBeInTheDocument()
   })
 
+  it('opens the public project repository in a new tab', () => {
+    render(<App />)
+    expect(screen.getByRole('link', { name: '在 GitHub 查看项目' })).toHaveAttribute(
+      'href',
+      'https://github.com/soloshow-labs/chat-screenshot-generator',
+    )
+    expect(screen.getByRole('link', { name: '在 GitHub 查看项目' })).toHaveAttribute('target', '_blank')
+    expect(screen.getByRole('link', { name: '在 GitHub 查看项目' })).toHaveAttribute('rel', 'noreferrer')
+  })
+
   it('explains browser-local storage without displaying a permanent warning', async () => {
     const user = userEvent.setup()
     render(<App />)

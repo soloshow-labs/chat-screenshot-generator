@@ -206,6 +206,16 @@ export default function App() {
                   <p>备份文件包含消息、头像和原始媒体，分享前请检查。</p>
                 </div>
               </details>
+              <a
+                className={styles.githubLink}
+                href="https://github.com/soloshow-labs/chat-screenshot-generator"
+                target="_blank"
+                rel="noreferrer"
+                aria-label="在 GitHub 查看项目"
+              >
+                <span className={styles.githubMark} aria-hidden="true" />
+                <span className={styles.githubLabel}>GitHub</span>
+              </a>
             </div>
           </div>
         </div>
