@@ -101,6 +101,11 @@ describe('ChatCanvas', () => {
     expect(screen.queryByText('仍需保留')).not.toBeInTheDocument()
   })
 
+  it('uses the chat foreground color for the dark voice input control', () => {
+    render(<ChatCanvas draft={makeDraft({ theme: 'dark', inputBarMode: 'voice' })} exportMode />)
+    expect(getComputedStyle(screen.getByLabelText('按住说话')).color).toBe('var(--chat-text)')
+  })
+
   it('applies the selected theme and marks the export surface', () => {
     const { rerender } = render(<ChatCanvas draft={makeDraft({ theme: 'dark' })} exportMode={false} />)
     expect(screen.getByTestId('chat-canvas')).toHaveAttribute('data-theme', 'dark')

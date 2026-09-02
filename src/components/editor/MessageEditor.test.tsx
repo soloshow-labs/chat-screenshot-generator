@@ -122,6 +122,23 @@ describe('MessageEditor', () => {
     expect(screen.getByRole('status', { name: '消息匹配结果' })).toHaveTextContent('0 个匹配')
   })
 
+  it('explains that message search locates matches without hiding the list on hover and click', async () => {
+    const user = userEvent.setup()
+    render(<MessageEditor messages={SAMPLE_DRAFT.messages} participants={SAMPLE_DRAFT.participants} dispatch={vi.fn()} />)
+    const help = screen.getByRole('button', { name: '说明消息搜索和定位' })
+
+    await user.hover(help)
+    expect(screen.getByRole('tooltip')).toHaveTextContent('不会隐藏其他消息')
+    await user.unhover(help)
+    expect(screen.queryByRole('tooltip')).not.toBeInTheDocument()
+
+    await user.click(help)
+    expect(screen.getByRole('tooltip')).toHaveTextContent('用上下箭头跳转')
+    expect(help).toHaveAttribute('aria-expanded', 'true')
+    await user.click(screen.getByRole('heading', { name: '消息列表' }))
+    expect(screen.queryByRole('tooltip')).not.toBeInTheDocument()
+  })
+
   it('automatically expands and focuses a located compact message', () => {
     const messages = Array.from({ length: 200 }, (_, index) => ({
       ...SAMPLE_DRAFT.messages[index % SAMPLE_DRAFT.messages.length],

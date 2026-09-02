@@ -28,6 +28,41 @@
   font-size: 12px;
 }
 
+.titleWithHelp { display: flex; align-items: center; gap: 6px; }
+.navigatorHelp { position: relative; display: inline-flex; }
+.navigatorHelp > button {
+  display: grid;
+  width: 24px;
+  height: 24px;
+  padding: 0;
+  border: 0;
+  border-radius: 50%;
+  place-items: center;
+  background: transparent;
+  color: var(--text-muted);
+  cursor: help;
+}
+.navigatorHelp > button:hover,
+.navigatorHelp > button[aria-expanded='true'] { background: color-mix(in srgb, var(--brand) 9%, var(--surface)); color: var(--brand); }
+.navigatorHelp > button:focus-visible { outline: 2px solid color-mix(in srgb, var(--brand) 55%, white); outline-offset: 2px; }
+.navigatorHelpPopover {
+  position: absolute;
+  z-index: 12;
+  top: calc(100% + 8px);
+  left: -10px;
+  width: min(300px, calc(100vw - 48px));
+  margin: 0;
+  padding: 10px 12px;
+  border: 1px solid var(--border-strong);
+  border-radius: 8px;
+  background: var(--surface);
+  box-shadow: 0 10px 28px rgb(23 43 77 / 14%);
+  color: var(--text-primary);
+  font-size: 12px;
+  font-weight: 400;
+  line-height: 1.6;
+}
+
 .navigator {
   display: grid;
   grid-template-columns: minmax(140px, 1fr) minmax(110px, .45fr) minmax(105px, .4fr) auto 32px 32px;

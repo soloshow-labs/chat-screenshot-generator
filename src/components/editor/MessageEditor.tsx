@@ -1,4 +1,4 @@
-import { useCallback, useLayoutEffect, useMemo, useRef, useState, type ClipboardEvent, type Dispatch } from 'react'
+import { useCallback, useEffect, useLayoutEffect, useMemo, useRef, useState, type ClipboardEvent, type Dispatch } from 'react'
 import {
   closestCenter,
   DndContext,
@@ -13,7 +13,7 @@ import {
   sortableKeyboardCoordinates,
   verticalListSortingStrategy,
 } from '@dnd-kit/sortable'
-import { Plus } from 'lucide-react'
+import { CircleHelp, Plus } from 'lucide-react'
 import type { ChatAction } from '../../app/chatReducer'
 import type { ConversationType, Message, MessageKind, Participant } from '../../app/chatTypes'
 import { createLocalId } from '../../utils/createLocalId'
@@ -48,6 +48,9 @@ export function MessageEditor({ messages, participants, conversationType = 'grou
   const [kindFilter, setKindFilter] = useState<MessageKind | ''>('')
   const [matchIndex, setMatchIndex] = useState(0)
   const [navigationRequest, setNavigationRequest] = useState<{ messageId: string; sequence: number } | null>(null)
+  const [navigatorHelpPinned, setNavigatorHelpPinned] = useState(false)
+  const [navigatorHelpTransient, setNavigatorHelpTransient] = useState(false)
+  const navigatorHelpRef = useRef<HTMLDivElement>(null)
   const compactAvailable = messages.length > 0
   const compactEditing = compactAvailable && (compactPreference ?? messages.length >= 200)
   const expandedIdSet = useMemo(() => new Set(expandedIds), [expandedIds])
@@ -68,6 +71,15 @@ export function MessageEditor({ messages, participants, conversationType = 'grou
     })
   }, [kindFilter, messages, participants, query, senderFilter])
   const boundedMatchIndex = matches.length ? Math.min(matchIndex, matches.length - 1) : 0
+  const navigatorHelpVisible = navigatorHelpPinned || navigatorHelpTransient
+  useEffect(() => {
+    if (!navigatorHelpPinned) return undefined
+    function dismissNavigatorHelp(event: PointerEvent) {
+      if (!navigatorHelpRef.current?.contains(event.target as Node)) setNavigatorHelpPinned(false)
+    }
+    document.addEventListener('pointerdown', dismissNavigatorHelp)
+    return () => document.removeEventListener('pointerdown', dismissNavigatorHelp)
+  }, [navigatorHelpPinned])
   function focusLocatedMessage(request: { messageId: string } | null | undefined) {
     if (!request) return
     const row = Array.from(scrollerRef.current?.querySelectorAll<HTMLElement>('[data-editor-message-id]') ?? [])
@@ -164,7 +176,39 @@ export function MessageEditor({ messages, participants, conversationType = 'grou
   return (
     <section className={styles.editor} aria-labelledby="message-editor-title" onPaste={handleImagePaste}>
       <div className={styles.header}>
-        <h2 id="message-editor-title">消息列表</h2>
+        <div className={styles.titleWithHelp}>
+          <h2 id="message-editor-title">消息列表</h2>
+          <div
+            ref={navigatorHelpRef}
+            className={styles.navigatorHelp}
+            onMouseEnter={() => setNavigatorHelpTransient(true)}
+            onMouseLeave={() => setNavigatorHelpTransient(false)}
+            onFocus={() => setNavigatorHelpTransient(true)}
+            onBlur={event => { if (!event.currentTarget.contains(event.relatedTarget as Node | null)) setNavigatorHelpTransient(false) }}
+            onKeyDown={event => {
+              if (event.key !== 'Escape') return
+              event.stopPropagation()
+              setNavigatorHelpPinned(false)
+              setNavigatorHelpTransient(false)
+              ;(document.activeElement as HTMLElement | null)?.blur()
+            }}
+          >
+            <button
+              type="button"
+              aria-label="说明消息搜索和定位"
+              aria-expanded={navigatorHelpPinned}
+              aria-describedby={navigatorHelpVisible ? 'message-navigator-help' : undefined}
+              onClick={event => {
+                if (navigatorHelpPinned) {
+                  setNavigatorHelpPinned(false)
+                  setNavigatorHelpTransient(false)
+                  event.currentTarget.blur()
+                } else setNavigatorHelpPinned(true)
+              }}
+            ><CircleHelp size={16} /></button>
+            {navigatorHelpVisible ? <p id="message-navigator-help" role="tooltip" className={styles.navigatorHelpPopover}>用于查找并定位消息，不会隐藏其他消息。可按内容、发送人或类型缩小匹配范围，再用上下箭头跳转。</p> : null}
+          </div>
+        </div>
         <span>{messages.length} 条</span>
         <div className={styles.batchActions}>
           {compactAvailable ? <label className={styles.compactToggle}><input type="checkbox" aria-label="精简编辑" checked={compactEditing} onChange={event => setCompactPreference(event.target.checked)} />精简编辑</label> : null}
