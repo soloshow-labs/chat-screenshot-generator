@@ -9,7 +9,7 @@ permissions:
   contents: read
 
 env:
-  TZ: Asia/Taipei
+  TZ: Asia/Shanghai
 
 concurrency:
   group: ci-${{ github.workflow }}-${{ github.ref }}
