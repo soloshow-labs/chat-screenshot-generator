@@ -31,7 +31,9 @@ describe('ProjectManagerDialog', () => {
     expect(screen.queryByRole('tab', { name: '批量脚本' })).not.toBeInTheDocument()
     expect(screen.getByText('仙女驻凡大使馆')).toBeInTheDocument()
 
-    await user.click(screen.getByRole('button', { name: '新建项目' }))
+    const createButton = screen.getByRole('button', { name: '新建项目' })
+    await waitFor(() => expect(createButton).toBeEnabled(), indexedDbWait)
+    await user.click(createButton)
     expect(await screen.findByText('已新建项目', undefined, indexedDbWait)).toBeInTheDocument()
     expect(screen.getByText('新聊天')).toBeInTheDocument()
     expect(screen.getByText('当前项目')).toBeInTheDocument()
@@ -60,7 +62,9 @@ describe('ProjectManagerDialog', () => {
     await user.click(screen.getByRole('button', { name: '确认恢复' }))
     await waitFor(() => expect(screen.queryByRole('dialog', { name: '恢复这个版本？' })).not.toBeInTheDocument())
 
-    await user.click(screen.getByRole('button', { name: '新建项目' }))
+    const createButton = screen.getByRole('button', { name: '新建项目' })
+    await waitFor(() => expect(createButton).toBeEnabled(), indexedDbWait)
+    await user.click(createButton)
     expect(await screen.findByText('已新建项目', undefined, indexedDbWait)).toBeInTheDocument()
     expect(screen.getByText('新聊天')).toBeInTheDocument()
     const deleteButton = screen.getByRole('button', { name: '删除当前项目' })
