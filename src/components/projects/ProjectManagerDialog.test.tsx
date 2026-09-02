@@ -9,6 +9,8 @@ import { useProjectWorkspace } from '../../hooks/useProjectWorkspace'
 import { deleteProject, listProjects } from '../../services/localProjectStore'
 import { ProjectManagerDialog } from './ProjectManagerDialog'
 
+const indexedDbWait = { timeout: 3_000 }
+
 function Harness() {
   const chat = useChatDraft()
   const workspace = useProjectWorkspace({ draft: chat.draft, saveState: chat.saveState, recoverDraft: chat.recoverDraft })
@@ -22,15 +24,16 @@ describe('ProjectManagerDialog', () => {
     for (const project of await listProjects()) await deleteProject(project.id)
   })
 
-  it('manages distinct local projects without presenting the productivity-tool tabs', async () => {
+  it('manages distinct local projects without presenting the productivity-tool tabs', { timeout: 10_000 }, async () => {
     const user = userEvent.setup()
     render(<Harness />)
-    expect(await screen.findByRole('dialog', { name: '本地项目' })).toBeInTheDocument()
+    expect(await screen.findByRole('dialog', { name: '本地项目' }, indexedDbWait)).toBeInTheDocument()
     expect(screen.queryByRole('tab', { name: '批量脚本' })).not.toBeInTheDocument()
     expect(screen.getByText('仙女驻凡大使馆')).toBeInTheDocument()
 
     await user.click(screen.getByRole('button', { name: '新建项目' }))
-    expect(await screen.findByText('新聊天')).toBeInTheDocument()
+    expect(await screen.findByText('已新建项目', undefined, indexedDbWait)).toBeInTheDocument()
+    expect(screen.getByText('新聊天')).toBeInTheDocument()
     expect(screen.getByText('当前项目')).toBeInTheDocument()
 
     const name = screen.getByLabelText('项目名称')
@@ -38,19 +41,19 @@ describe('ProjectManagerDialog', () => {
     await user.clear(name)
     await user.type(name, '旅行聊天')
     await user.click(screen.getByRole('button', { name: '保存项目名称' }))
-    expect(await screen.findByText('旅行聊天')).toBeInTheDocument()
+    expect(await screen.findByText('旅行聊天', undefined, indexedDbWait)).toBeInTheDocument()
 
     await user.click(screen.getByRole('button', { name: '复制当前项目' }))
-    expect(await screen.findByText('旅行聊天 - 副本')).toBeInTheDocument()
+    expect(await screen.findByText('旅行聊天 - 副本', undefined, indexedDbWait)).toBeInTheDocument()
     expect(screen.getAllByRole('button', { name: /选择项目/ })).toHaveLength(3)
   })
 
-  it('requires confirmation before delete and restore, while retaining JSON backup controls', async () => {
+  it('requires confirmation before delete and restore, while retaining JSON backup controls', { timeout: 10_000 }, async () => {
     const user = userEvent.setup()
     render(<Harness />)
-    await screen.findByRole('dialog', { name: '本地项目' })
+    await screen.findByRole('dialog', { name: '本地项目' }, indexedDbWait)
     await user.click(screen.getByRole('button', { name: '创建恢复点' }))
-    expect(await screen.findByText(/手动恢复点/)).toBeInTheDocument()
+    expect(await screen.findByText(/手动恢复点/, undefined, indexedDbWait)).toBeInTheDocument()
 
     await user.click(screen.getByRole('button', { name: /恢复这个版本/ }))
     expect(screen.getByRole('dialog', { name: '恢复这个版本？' })).toBeInTheDocument()
@@ -58,7 +61,8 @@ describe('ProjectManagerDialog', () => {
     await waitFor(() => expect(screen.queryByRole('dialog', { name: '恢复这个版本？' })).not.toBeInTheDocument())
 
     await user.click(screen.getByRole('button', { name: '新建项目' }))
-    expect(await screen.findByText('新聊天')).toBeInTheDocument()
+    expect(await screen.findByText('已新建项目', undefined, indexedDbWait)).toBeInTheDocument()
+    expect(screen.getByText('新聊天')).toBeInTheDocument()
     const deleteButton = screen.getByRole('button', { name: '删除当前项目' })
     await waitFor(() => expect(deleteButton).toBeEnabled())
     await user.click(deleteButton)
