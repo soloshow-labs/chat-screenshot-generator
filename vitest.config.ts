@@ -6,7 +6,7 @@ export default defineConfig({
   test: {
     // DOM suites and large media fixtures are memory-heavy. Bound concurrency
     // rather than multiplying jsdom instances by every available CPU core.
-    maxWorkers: 4,
+    maxWorkers: 2,
     environment: 'jsdom',
     setupFiles: ['./src/test/setup.ts'],
     css: true,
