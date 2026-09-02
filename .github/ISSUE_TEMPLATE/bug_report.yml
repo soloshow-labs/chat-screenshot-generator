@@ -1,0 +1,53 @@
+name: 缺陷报告
+description: 报告可以稳定复现的错误
+title: "[Bug]: "
+labels: [bug]
+body:
+  - type: markdown
+    attributes:
+      value: 请先确认问题发生在最新代码，并移除截图或项目文件中的私人内容。
+  - type: textarea
+    id: summary
+    attributes:
+      label: 问题描述
+      description: 实际发生了什么？你原本期望什么？
+    validations:
+      required: true
+  - type: textarea
+    id: steps
+    attributes:
+      label: 复现步骤
+      placeholder: |
+        1. 打开……
+        2. 设置……
+        3. 点击……
+    validations:
+      required: true
+  - type: input
+    id: version
+    attributes:
+      label: 版本或提交
+      placeholder: 提交 SHA、发布版本或日期
+    validations:
+      required: true
+  - type: input
+    id: environment
+    attributes:
+      label: 环境
+      placeholder: Chrome 版本、操作系统、屏幕尺寸
+    validations:
+      required: true
+  - type: textarea
+    id: evidence
+    attributes:
+      label: 补充证据
+      description: 可提供已脱敏的截图、控制台错误或最小项目文件。请勿上传真实聊天或敏感信息。
+  - type: checkboxes
+    id: checks
+    attributes:
+      label: 提交前确认
+      options:
+        - label: 我已在最新代码或最新公开版本中复现。
+          required: true
+        - label: 我已移除个人信息和真实聊天内容。
+          required: true

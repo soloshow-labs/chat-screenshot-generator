@@ -1,0 +1,76 @@
+.preview {
+  display: grid;
+  grid-template-rows: auto minmax(0, 1fr);
+  height: 100%;
+  min-width: 0;
+  min-height: 0;
+  background: var(--preview-bg);
+}
+
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  min-height: 58px;
+  padding: 0 18px;
+  border-bottom: 1px solid var(--border);
+  background: var(--surface);
+}
+
+.header h2 {
+  margin: 0;
+  font-size: var(--font-size-section-title);
+  font-weight: var(--font-weight-title);
+  line-height: var(--line-height-title);
+}
+
+.header { flex-wrap: wrap; gap: 8px; padding-top: 8px; padding-bottom: 8px; }
+.locateButton { height: var(--control-height-compact); padding: 0 10px; border: 1px solid var(--border); border-radius: 6px; color: var(--text-secondary); background: var(--surface); font: inherit; font-size: 12px; cursor: pointer; }
+.locateButton[aria-pressed="true"] { border-color: var(--brand-hover); color: var(--brand-strong); background: #eaf8ef; }
+.locateHint { margin: 0 0 16px; color: #345442; font-size: 12px; line-height: 1.5; text-align: center; }
+
+.zoomControls {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.zoomControls button {
+  display: grid;
+  width: var(--control-height-icon);
+  height: var(--control-height-icon);
+  padding: 0;
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  place-items: center;
+  background: var(--surface);
+  color: var(--text-secondary);
+}
+
+.zoomControls output {
+  min-width: 43px;
+  color: var(--text-secondary);
+  text-align: center;
+  font-size: 11px;
+}
+
+.stage {
+  min-height: 0;
+  overflow: auto;
+  padding: 30px 28px 72px;
+}
+
+.canvasFrame {
+  margin: 0 auto;
+}
+
+.scaler {
+  width: 430px;
+  transform: scale(var(--preview-zoom));
+  transform-origin: top left;
+  box-shadow: 0 18px 52px rgb(34 45 55 / 20%);
+}
+
+@media (max-width: 1279px) {
+  .stage { min-height: 0; }
+}

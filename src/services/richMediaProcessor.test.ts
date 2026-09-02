@@ -1,0 +1,57 @@
+import { afterEach, expect, it, vi } from 'vitest'
+import * as processor from './mediaProcessor'
+afterEach(() => { vi.restoreAllMocks(); vi.useRealTimers() })
+it('validates arbitrary file size before storage', async () => {
+  expect('processFile' in processor).toBe(true)
+  await expect(processor.processFile({ size: 50 * 1024 * 1024 + 1 } as File)).rejects.toThrow('文件不能超过 50 MB')
+  await expect(processor.processFile(new File(['ok'], 'a.txt', { type: 'text/plain' }))).resolves.toEqual({ mimeType: 'text/plain', sizeBytes: 2, expired: false })
+})
+it('validates video type and size before metadata', async () => {
+  expect('processVideoFile' in processor).toBe(true)
+  await expect(processor.processVideoFile(new File(['x'], 'a.avi', { type: 'video/avi' }))).rejects.toThrow('仅支持 MP4、WebM 或 MOV 视频')
+  await expect(processor.processVideoFile({ size: 100 * 1024 * 1024 + 1, type: 'video/mp4', name: 'a.mp4' } as File)).rejects.toThrow('视频不能超过 100 MB')
+})
+it('rejects unsupported video codecs and releases the object URL', async () => {
+  expect('processVideoFile' in processor).toBe(true)
+  vi.spyOn(URL, 'createObjectURL').mockReturnValue('blob:video')
+  const revoke = vi.spyOn(URL, 'revokeObjectURL')
+  const video = document.createElement('video')
+  vi.spyOn(document, 'createElement').mockReturnValue(video)
+  const result = processor.processVideoFile(new File(['x'], 'a.mp4', { type: 'video/mp4' }))
+  video.dispatchEvent(new Event('error'))
+  await expect(result).rejects.toThrow('无法读取视频，浏览器不支持此编码，请换用 H.264 MP4 或 WebM')
+  expect(revoke).toHaveBeenCalledWith('blob:video')
+})
+it('times out stalled video metadata and releases the object URL', async () => {
+  vi.useFakeTimers()
+  vi.spyOn(URL, 'createObjectURL').mockReturnValue('blob:timeout')
+  const revoke = vi.spyOn(URL, 'revokeObjectURL')
+  const result = processor.processVideoFile(new File(['x'], 'a.webm', { type: 'video/webm' }))
+  const rejection = expect(result).rejects.toThrow('读取视频超时')
+  await vi.advanceTimersByTimeAsync(10000)
+  await rejection
+  expect(revoke).toHaveBeenCalledWith('blob:timeout')
+})
+it('extracts dimensions and rounded duration for local MOV video', async () => {
+  vi.spyOn(URL, 'createObjectURL').mockReturnValue('blob:mov')
+  const revoke = vi.spyOn(URL, 'revokeObjectURL')
+  const video = document.createElement('video')
+  Object.defineProperties(video, { duration: { value: 2.25 }, videoWidth: { value: 640 }, videoHeight: { value: 360 } })
+  vi.spyOn(document, 'createElement').mockReturnValue(video)
+  const result = processor.processVideoFile(new File(['ok'], 'clip.mov'))
+  video.dispatchEvent(new Event('loadedmetadata'))
+  await expect(result).resolves.toEqual({ mimeType: 'video/quicktime', durationSeconds: 3, width: 640, height: 360, sizeBytes: 2, posterDataUrl: null })
+  expect(revoke).toHaveBeenCalledWith('blob:mov')
+  expect(video).not.toHaveAttribute('src')
+})
+it('times out stalled audio metadata instead of leaving uploads busy forever', async () => {
+  vi.useFakeTimers()
+  vi.spyOn(URL, 'createObjectURL').mockReturnValue('blob:audio-timeout')
+  const revoke = vi.spyOn(URL, 'revokeObjectURL')
+  const result = processor.processAudioFile(new File(['x'], 'a.mp3', { type: 'audio/mpeg' }))
+  let settled = false
+  void result.catch(() => { settled = true })
+  await vi.advanceTimersByTimeAsync(10000)
+  expect(settled).toBe(true)
+  expect(revoke).toHaveBeenCalledWith('blob:audio-timeout')
+})

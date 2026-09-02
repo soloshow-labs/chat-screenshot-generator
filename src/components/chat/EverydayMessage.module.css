@@ -1,0 +1,30 @@
+.quote {
+  width: fit-content;
+  max-width: 240px;
+  margin-top: 5px;
+  padding: 6px 9px;
+  border-radius: 4px;
+  color: var(--chat-muted, #777);
+  background: color-mix(in srgb, var(--chat-text, #111) 6%, var(--chat-bg, #ededed));
+  font-size: 12px;
+  line-height: 17px;
+  overflow-wrap: anywhere;
+}
+.quote[data-side="right"], .transcript[data-side="right"] { margin-left: auto; }
+.quoteName { margin-bottom: 2px; overflow-wrap: anywhere; }
+.quoteText { display: -webkit-box; -webkit-box-orient: vertical; -webkit-line-clamp: 3; line-clamp: 3; overflow: hidden; white-space: pre-wrap; }
+.quoteImage { display: block; width: 36px; height: 36px; border-radius: 2px; object-fit: cover; }
+.displayVoice { cursor: default; }
+.transcript {
+  width: fit-content;
+  max-width: 240px;
+  margin-top: 5px;
+  padding: 9px 11px;
+  border-radius: 5px;
+  background: var(--bubble-incoming, #fff);
+  color: var(--chat-text, #111);
+  font-size: 17px;
+  line-height: 21px;
+  white-space: pre-wrap;
+  overflow-wrap: anywhere;
+}

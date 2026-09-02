@@ -1,0 +1,12 @@
+node_modules/
+dist/
+coverage/
+.vite/
+.worktrees/
+.gstack/
+playwright-report/
+test-results/
+*.log
+.DS_Store
+*.local
+docs/

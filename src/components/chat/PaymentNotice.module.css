@@ -1,0 +1,23 @@
+.notice {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 4px;
+  width: 100%;
+  min-height: 22px;
+  color: var(--chat-muted, #999);
+  font-size: 12px;
+  line-height: 18px;
+  text-align: center;
+}
+
+.notice [data-payment-glyph] {
+  width: 14px;
+  height: 16px;
+  flex: 0 0 14px;
+}
+
+.notice > span {
+  min-width: 0;
+  overflow-wrap: anywhere;
+}

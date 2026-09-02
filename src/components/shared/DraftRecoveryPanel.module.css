@@ -1,0 +1,11 @@
+.page { min-height: 100dvh; display: grid; place-items: center; padding: 24px; background: #f6f7f8; }
+.panel { width: min(100%, 600px); padding: 28px; border: 1px solid #dfe3e7; border-radius: 16px; background: white; color: #25313c; overflow-wrap: anywhere; }
+.panel h1 { margin: 0 0 16px; font-size: 23px; }
+.panel p { line-height: 1.7; }
+.panel button { min-height: 40px; border: 1px solid #c6d0d8; border-radius: 8px; padding: 8px 14px; background: #f7f9fa; color: inherit; cursor: pointer; }
+.panel button:disabled { opacity: .5; cursor: default; }
+.file { display: grid; gap: 8px; margin-top: 20px; }
+.file input { max-width: 100%; }
+.confirm { margin-top: 20px; padding-top: 12px; border-top: 1px solid #dfe3e7; }
+.actions { display: flex; flex-wrap: wrap; gap: 10px; }
+@media (max-width: 480px) { .page { padding: 16px; } .panel { padding: 20px; } }

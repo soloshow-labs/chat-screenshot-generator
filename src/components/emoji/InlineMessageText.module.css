@@ -1,0 +1,11 @@
+.emoji,
+.small {
+  display: inline-block;
+  width: 20px;
+  height: 20px;
+  max-width: none;
+  margin: 0 1.333px;
+  vertical-align: -4px;
+  object-fit: contain;
+}
+.small { width: 16px; height: 16px; margin: 0 1px; vertical-align: -3px; }

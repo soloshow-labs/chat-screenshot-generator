@@ -1,0 +1,18 @@
+.overlay { position: fixed; inset: 0; z-index: 100; display: grid; place-items: center; padding: 20px; background: rgb(0 0 0 / 40%); }
+.dialog { width: min(860px, 100%); max-height: 90dvh; overflow: auto; padding: 20px; border-radius: var(--dialog-radius); background: var(--surface); color: var(--text-primary); box-shadow: var(--dialog-shadow); }
+.dialog header { display: flex; align-items: flex-start; justify-content: space-between; gap: 16px; }
+.dialog h2 { margin: 0; font-size: var(--font-size-dialog-title); }
+.dialog header p { margin: 4px 0 0; color: var(--text-muted); font-size: 12px; }
+.dialog button { min-height: var(--control-height-compact); padding: 0 10px; border: 1px solid var(--border); border-radius: 7px; background: var(--surface); color: var(--text-primary); cursor: pointer; }
+.dialog button:disabled { cursor: default; opacity: .5; }
+.grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(180px, 1fr)); gap: 12px; padding: 0; margin: 18px 0; list-style: none; }
+.grid li { display: grid; grid-template-columns: minmax(0, 1fr) 34px 34px; gap: 6px; align-items: center; padding: 8px; border: 1px solid var(--border); border-radius: 10px; background: var(--surface-subtle); }
+.grid img { grid-column: 1 / -1; width: 100%; height: 150px; border-radius: 7px; background: #d7dbdf; object-fit: contain; }
+.grid div { display: grid; min-width: 0; }
+.grid strong { overflow: hidden; font-size: 11px; text-overflow: ellipsis; white-space: nowrap; }
+.grid span { color: var(--text-muted); font-size: 10px; }
+.grid button { display: grid; width: 34px; padding: 0; place-items: center; }
+.empty { margin: 28px 0; padding: 28px; border: 1px dashed var(--border-strong); border-radius: 10px; color: var(--text-muted); text-align: center; }
+.dialog footer { display: flex; justify-content: flex-end; gap: 8px; }
+.dialog footer button:last-child:not(:disabled) { border-color: var(--brand-accessible); background: var(--brand-accessible); color: var(--text-on-accent); }
+@media (max-width: 520px) { .overlay { padding: 10px; } .dialog { padding: 16px; } .grid { grid-template-columns: 1fr; } }

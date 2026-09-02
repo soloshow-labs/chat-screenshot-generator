@@ -1,0 +1,23 @@
+.overlay { position: fixed; inset: 0; z-index: 100; background: #0006; display: grid; place-items: center; padding: 20px; }
+.dialog { width: min(720px, 100%); max-height: 90dvh; overflow: auto; background: var(--surface); color: var(--text-primary); border-radius: var(--dialog-radius); padding: var(--dialog-padding); box-shadow: var(--dialog-shadow); font-size: 13px; line-height: 1.6; }
+.dialog header { display: flex; justify-content: space-between; align-items: center; gap: 12px; margin-bottom: 16px; }
+.dialog h2 { margin: 0; font-size: var(--font-size-dialog-title); font-weight: var(--font-weight-title); line-height: var(--line-height-title); }
+.dialog h3 { margin: 8px 0; font-size: 13px; font-weight: 650; line-height: 1.6; }
+.dialog [role='tablist'] { display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 16px; }
+.dialog button { height: var(--control-height-compact); max-width: 100%; padding: 0 10px; border: 1px solid var(--border); border-radius: var(--control-radius-compact); background: var(--surface-subtle); cursor: pointer; margin: 3px; color: var(--text-primary); font: inherit; font-size: 12px; line-height: 1.4; }
+.dialog header button, .dialog [role='tablist'] button { margin: 0; }
+.dialog button:hover:not(:disabled) { border-color: var(--brand); }
+.dialog button[aria-selected='true'] { color: var(--text-on-accent); background: var(--brand-accessible); }
+.dialog button:disabled { opacity: .5; cursor: wait; }
+.dialog fieldset { border: 0; padding: 0; margin: 0; min-width: 0; }
+.dialog label { display: grid; gap: 6px; margin: 12px 0; font-size: 12px; }
+.dialog input, .dialog select, .dialog textarea { width: 100%; min-width: 0; padding: 0 8px; border: 1px solid var(--border-strong); border-radius: 7px; background: var(--surface); color: var(--text-primary); font: inherit; font-size: 12px; }
+.dialog input, .dialog select { height: var(--control-height-compact); }
+.dialog input[type='file'] { padding: 0; }
+.dialog input[type='file']::file-selector-button { height: 30px; margin-right: 10px; padding: 0 10px; border: 0; border-right: 1px solid var(--border); background: var(--surface-subtle); color: var(--text-primary); font: inherit; cursor: pointer; }
+.dialog textarea { min-height: 128px; padding: 8px 10px; line-height: 1.6; resize: vertical; }
+.dialog article { border-bottom: 1px solid #e8eeea; padding: 8px 0; }
+.dialog article h3 { margin: 8px 0; font-size: 13px; font-weight: 650; }
+.dialog p, .dialog li { line-height: 1.6; overflow-wrap: anywhere; }
+.dialog [role='alert'] { color: #a03425; }
+@media (max-width: 540px) { .overlay { padding: 10px; } .dialog { padding: 16px; } }

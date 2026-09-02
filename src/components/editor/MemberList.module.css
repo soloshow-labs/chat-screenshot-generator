@@ -1,0 +1,191 @@
+.panel {
+  margin: 0 12px 12px;
+  padding: 16px;
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  background: var(--surface);
+}
+
+.header {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  margin-bottom: 14px;
+}
+
+.header h2 {
+  margin: 0;
+  font-size: var(--font-size-section-title);
+  font-weight: var(--font-weight-title);
+  line-height: var(--line-height-title);
+  letter-spacing: -.01em;
+}
+
+.header span {
+  color: var(--text-muted);
+  font-size: 12px;
+}
+
+.headerActions { display: flex; align-items: center; gap: 9px; }
+.headerActions button { display: inline-flex; height: var(--control-height-icon); padding: 0 8px; align-items: center; border: 1px solid var(--border); border-radius: 7px; color: var(--text-primary); background: var(--surface); cursor: pointer; gap: 5px; font: inherit; font-size: 10px; }
+
+.list {
+  display: grid;
+  overflow: hidden;
+  border: 1px solid var(--border);
+  border-radius: 9px;
+}
+
+.member {
+  display: grid;
+  grid-template-columns: 34px minmax(0, 1fr) 28px 28px;
+  gap: 8px;
+  align-items: center;
+  min-height: 48px;
+  padding: 6px 8px;
+  background: var(--surface);
+}
+
+.member + .member {
+  border-top: 1px solid var(--border);
+}
+
+.avatarButton {
+  position: relative;
+  width: 34px;
+  height: 34px;
+  overflow: hidden;
+  border-radius: 7px;
+  cursor: pointer;
+}
+
+.avatarButton img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.avatarButton span {
+  position: absolute;
+  inset: auto 0 0;
+  display: grid;
+  height: 14px;
+  place-items: center;
+  background: rgb(0 0 0 / 52%);
+  color: var(--text-on-accent);
+}
+
+.avatarButton input,
+.srOnly {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  white-space: nowrap;
+}
+
+.nameField {
+  position: relative;
+}
+
+.nameField input {
+  width: 100%;
+  min-width: 0;
+  height: var(--control-height-compact);
+  padding: 0 34px 0 10px;
+  border: 1px solid transparent;
+  border-radius: 8px;
+  background: transparent;
+  font: inherit;
+  font-size: 12px;
+}
+
+.nameField input:hover,
+.nameField input:focus {
+  border-color: var(--border);
+  background: var(--surface-subtle);
+  outline: 0;
+}
+
+.nameField small {
+  position: absolute;
+  top: 7px;
+  right: 8px;
+  padding: 2px 5px;
+  border-radius: 4px;
+  background: color-mix(in srgb, var(--brand) 13%, white);
+  color: var(--brand-strong);
+  font-size: 10px;
+  font-weight: 700;
+}
+
+.iconButton,
+.selfIcon {
+  display: grid;
+  width: var(--control-height-icon);
+  height: var(--control-height-icon);
+  padding: 0;
+  border: 0;
+  place-items: center;
+  background: transparent;
+  color: var(--text-muted);
+}
+
+.iconButton {
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+.iconButton:hover:not(:disabled) {
+  background: var(--surface-subtle);
+  color: var(--text-primary);
+}
+
+.iconButton:disabled {
+  cursor: not-allowed;
+  opacity: .25;
+}
+
+.deleteButton:hover:not(:disabled) {
+  color: var(--danger);
+}
+
+.selfIcon {
+  color: var(--brand);
+}
+
+.addButton {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  min-height: 36px;
+  margin-top: 10px;
+  border: 1px solid color-mix(in srgb, var(--brand) 62%, var(--surface));
+  border-radius: 8px;
+  background: color-mix(in srgb, var(--brand) 4%, var(--surface));
+  color: var(--brand-strong);
+  cursor: pointer;
+  gap: 7px;
+  font: inherit;
+  font-size: 12px;
+  font-weight: 650;
+}
+
+.error {
+  margin-top: 10px;
+  color: var(--danger);
+  font-size: 12px;
+}
+
+@media (max-width: 520px) {
+  .panel {
+    margin-right: 10px;
+    margin-left: 10px;
+  }
+
+  .member {
+    grid-template-columns: 34px minmax(0, 1fr) var(--control-height-icon) var(--control-height-icon);
+  }
+}

@@ -1,0 +1,14 @@
+.fields { display: flex; flex-wrap: wrap; align-items: flex-end; gap: 10px; margin-top: 8px; font-size: 12px; }
+.fields label { display: flex; flex-direction: column; gap: 4px; min-width: 0; flex: 1 1 160px; }
+.fields label > span { color: var(--text-muted); font-size: 10px; font-weight: 650; }
+.fields input, .fields select { width: 100%; min-width: 0; height: var(--control-height-compact); padding: 0 8px; border: 1px solid var(--border-strong); border-radius: 7px; background: var(--surface); color: var(--text-primary); font: inherit; }
+.fields .uploadButton { position: relative; display: inline-flex; flex: 0 1 auto; flex-direction: row; align-items: center; height: var(--control-height-compact); padding: 0 12px; border: 1px solid color-mix(in srgb, var(--brand) 42%, var(--surface)); border-radius: 7px; background: color-mix(in srgb, var(--brand) 8%, var(--surface)); cursor: pointer; }
+.fields .uploadButton > span { color: var(--brand-strong); font-size: 12px; }
+.fields .uploadButton input { position: absolute; width: 1px; height: 1px; padding: 0; border: 0; clip: rect(0 0 0 0); clip-path: inset(50%); opacity: 0; }
+.uploadButton:focus-within { outline: 3px solid color-mix(in srgb, var(--accent) 45%, white); outline-offset: 2px; }
+.fields .checkboxLabel { flex-direction: row; align-items: center; min-height: var(--control-height-compact); gap: 7px; color: var(--text-muted); cursor: pointer; }
+.fields input[type='checkbox'] { flex: 0 0 auto; width: 14px; height: 14px; margin: 0; padding: 0; accent-color: var(--brand); }
+.removeButton { flex: 0 0 auto; height: var(--control-height-compact); padding: 0 10px; border: 1px solid var(--border); border-radius: 7px; color: var(--danger); background: var(--surface); cursor: pointer; font: inherit; }
+.removeButton:hover { border-color: var(--danger); background: color-mix(in srgb, var(--danger) 5%, white); }
+.fields [role='alert'] { flex-basis: 100%; color: var(--danger); }
+.paymentHint { flex-basis: 100%; margin: 0; color: var(--text-muted); font-size: 11px; line-height: 1.5; }

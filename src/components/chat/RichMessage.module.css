@@ -1,0 +1,64 @@
+.card { width: 240px; max-width: 100%; border-radius: 5px; padding: 13px; background: #fff; color: #191919; font-size: 14px; line-height: 1.4; overflow: hidden; overflow-wrap: anywhere; }
+.card strong { font-size: 16px; font-weight: 500; }
+.card p { margin: 7px 0; color: #777; font-size: 13px; white-space: pre-wrap; }
+.card a { color: #576b95; text-decoration: none; font-size: 12px; }
+.card footer { clear: both; border-top: 1px solid #0001; margin: 10px -13px -13px; padding: 6px 13px; font-size: 12px; color: #777; }
+.thumb { width: 48px; height: 48px; object-fit: cover; float: right; margin-left: 10px; border-radius: 3px; }
+.paymentCard, .contactCard, .locationCard, .fileCard { display: block; width: 240px; max-width: 100%; box-sizing: border-box; overflow: hidden; border-radius: 5px; font-size: 14px; line-height: 1.4; }
+.paymentCard, .contactCard, .locationCard { position: relative; min-width: 0; overflow: visible; }
+.cardTail { position: absolute; top: 12px; left: -5px; width: 8px; height: 11px; background: inherit; clip-path: polygon(100% 0, 100% 100%, 0 50%); pointer-events: none; }
+[data-side='right'] > .cardTail { right: -5px; left: auto; clip-path: polygon(0 0, 100% 50%, 0 100%); }
+.paymentCard { width: 233.333333px; }
+/* Match the opaque PNG corners: a different surface color reveals a square tile. */
+.paymentCard, .paymentBody, .paymentFooter { background: #f99d3b; color: #fff; }
+.paymentHandled, .paymentHandled .paymentBody, .paymentHandled .paymentFooter { background: #fde1c2; }
+.paymentTerminal, .paymentTerminal .paymentBody, .paymentTerminal .paymentFooter { background: #fde1c4; }
+/* The reference desaturates the complete expired transfer, including its tail. */
+.paymentExpiredTransfer { filter: saturate(0.6); }
+.paymentCard > .cardTail, .contactCard > .cardTail { top: 16.666667px; left: -4px; width: 8px; height: 8px; clip-path: none; transform: rotate(45deg); border-bottom-left-radius: 1.333333px; }
+.paymentCard[data-side='right'] > .cardTail, .contactCard[data-side='right'] > .cardTail { right: -3.333333px; left: auto; border-bottom-left-radius: 0; border-top-right-radius: 1.333333px; }
+.paymentBody { display: flex; align-items: center; gap: 10px; height: 64px; padding: 0 12.666667px; box-sizing: border-box; border-radius: 5px 5px 0 0; }
+.paymentBody [data-payment-glyph] { display: block; flex: 0 0 40px; width: 40px; height: 40px; color: #fff; }
+.paymentBody img[data-payment-mode='red-packet'] { flex-basis: 34px; width: 34px; margin-left: 3px; }
+/* Reveal the pale surface at the opaque closed PNG's tiny orange corners. */
+.paymentTerminal img[data-payment-mode='red-packet'] { clip-path: inset(0 round 2px); }
+.paymentText { display: flex; flex-direction: column; flex: 1; min-width: 0; }
+.paymentTitle { margin-top: -1.666667px; font-size: 16px; line-height: 20px; font-weight: 400; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.paymentNote { margin-top: 1.333333px; font-size: 12px; line-height: 16px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.paymentFooter { display: flex; align-items: center; height: 23.666667px; box-sizing: border-box; padding: 0 12.666667px; border-radius: 0 0 5px 5px; font-size: 12px; line-height: 16px; color: #faecda; }
+.paymentHandled .paymentFooter { color: #fff; }
+.contactCard, .locationCard, .fileCard { background: #fff; color: #191919; }
+.contactCard { padding: 9.333333px 9.333333px 0; }
+.contactIdentity { position: relative; display: flex; flex-direction: row; gap: 9.333333px; align-items: center; box-sizing: border-box; padding-bottom: 9.666667px; }
+.contactIdentity::after { content: ''; position: absolute; bottom: 0; left: 0; right: 0; height: 1px; background: #e9e9e9; transform: scaleY(.333333); transform-origin: bottom; }
+.contactAvatar { flex: 0 0 36px; width: 36px; height: 36px; object-fit: cover; border-radius: 4px; float: none; }
+.contactText { flex: 1; min-width: 0; }
+.contactText strong { display: block; font-size: 16px; font-weight: 400; line-height: normal; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.contactText p { margin: 2px 0 0; font-size: 12px; line-height: 16px; color: #777; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.contactFooter { font-size: 16px; line-height: normal; color: #777; }
+.contactFooter span { position: relative; top: -2.666667px; font-size: 9.333333px; }
+.fileFooter { border-top: 1px solid #0001; padding: 5px 13px; font-size: 11px; line-height: 16px; color: #777; }
+.fileCard { position: relative; overflow: visible; text-decoration: none; }
+a.fileCard { cursor: pointer; }
+a.fileCard:focus-visible, .video:focus-visible { outline: 2px solid #07a75a; outline-offset: 3px; }
+.fileBody { display: flex; align-items: center; gap: 12px; padding: 13px; }
+.fileText { flex: 1; min-width: 0; }
+.fileName { display: -webkit-box; -webkit-box-orient: vertical; -webkit-line-clamp: 2; overflow: hidden; overflow-wrap: anywhere; font-size: 16px; line-height: 21px; font-weight: 400; }
+.fileSize { display: block; margin-top: 6px; color: #999; font-size: 11px; line-height: 16px; }
+.fileIcon { position: relative; flex: 0 0 42px; width: 42px; height: 49px; display: grid; place-items: center; padding-top: 8px; box-sizing: border-box; border-radius: 3px; background: #e9a03e; color: #fff; font-size: 10px; font-weight: 700; }
+.fileIcon::after { content: ''; position: absolute; top: 0; right: 0; border-top: 12px solid #fff9; border-left: 12px solid transparent; }
+.locationHeading { height: 60px; box-sizing: border-box; padding: 10px 12px; }
+.locationHeading strong { display: block; font-size: 16px; font-weight: 400; line-height: 20px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.locationHeading p { margin: 2px 0 0; color: #777; font-size: 12px; line-height: 16px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.localMap { display: block; width: 100%; height: 112px; overflow: hidden; border-radius: 0 0 5px 5px; }
+.video { position: relative; max-width: 100%; max-height: 300px; padding: 0; aspect-ratio: 4 / 3; display: grid; place-items: center; color: #fff; background: #333; border: 0; border-radius: 5px; overflow: hidden; cursor: pointer; box-sizing: border-box; }
+.video img { position: absolute; width: 100%; height: 100%; object-fit: cover; }
+.videoPlay { position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); z-index: 1; }
+.videoDuration { position: absolute; bottom: 7px; right: 8px; font-size: 12px; line-height: 16px; text-shadow: 0 1px 3px #000; }
+.mediaError { margin: 5px 0 0; color: var(--chat-muted); font-size: 12px; line-height: 18px; }
+.overlay { position: fixed; inset: 0; z-index: 1000; background: #000e; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 16px; color: #fff; }
+.overlay video { max-width: 90vw; max-height: 75vh; }
+:global([data-theme='dark']) .card, :global([data-theme='dark']) .contactCard, :global([data-theme='dark']) .locationCard, :global([data-theme='dark']) .fileCard { background: #2c2c2c; color: #ddd; }
+:global([data-theme='dark']) .contactText p, :global([data-theme='dark']) .contactFooter, :global([data-theme='dark']) .locationHeading p, :global([data-theme='dark']) .fileFooter { color: #aaa; }
+:global([data-theme='dark']) .contactIdentity::after { background: #444; }
+:global([data-theme='dark']) .fileFooter { border-color: #fff1; }

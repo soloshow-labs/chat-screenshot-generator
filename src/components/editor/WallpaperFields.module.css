@@ -1,0 +1,14 @@
+.fields { display: grid; gap: 8px; margin-top: 14px; }
+.label { color: var(--text-muted); font-size: 11px; font-weight: 650; }
+.modes { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 6px; }
+.modes button, .upload, .restore { min-height: var(--control-height-compact); border: 1px solid var(--border-strong); border-radius: 8px; background: var(--surface); color: var(--text-primary); cursor: pointer; font: inherit; font-size: 12px; }
+.modes button[aria-pressed="true"] { border-color: var(--brand); background: color-mix(in srgb, var(--brand) 8%, white); }
+.upload { display: grid; place-items: center; position: relative; text-align: center; }
+.upload input { position: absolute; inset: 0; width: 100%; opacity: 0; cursor: pointer; }
+.colorRow { display: grid; grid-template-columns: 38px 1fr; gap: 8px; }
+.colorRow input { min-width: 0; height: var(--control-height-compact); border: 1px solid var(--border-strong); border-radius: 8px; background: var(--surface); font: inherit; }
+.colorRow input[type="color"] { padding: 3px; }
+.restore { justify-self: start; padding: 0 10px; }
+.fileName, .hint, .error { margin: 0; font-size: 11px; line-height: 1.45; }
+.fileName, .hint { color: var(--text-muted); }
+.error { color: var(--danger); }

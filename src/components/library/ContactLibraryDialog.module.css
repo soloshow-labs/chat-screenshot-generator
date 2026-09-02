@@ -1,0 +1,41 @@
+.overlay { position: fixed; z-index: 80; inset: 0; display: grid; place-items: center; padding: 24px; }
+.backdrop { position: absolute; inset: 0; width: 100%; height: 100%; border: 0; background: rgb(20 26 31 / 58%); backdrop-filter: blur(2px); }
+.dialog { position: relative; display: grid; grid-template-rows: auto auto minmax(0, 1fr); width: min(720px, 100%); max-height: min(780px, calc(100vh - 48px)); overflow: hidden; border-radius: var(--dialog-radius); background: var(--surface); box-shadow: var(--dialog-shadow); }
+.header { display: flex; align-items: flex-start; justify-content: space-between; padding: 20px 22px 16px; border-bottom: 1px solid var(--border); }
+.header h2 { margin: 0; font-size: var(--font-size-dialog-title); font-weight: var(--font-weight-title); line-height: var(--line-height-title); }
+.header p { margin: 4px 0 0; color: var(--text-muted); font-size: 12px; }
+.header > button { display: grid; width: var(--control-height-compact); height: var(--control-height-compact); padding: 0; border: 0; border-radius: var(--control-radius-compact); place-items: center; background: var(--surface-subtle); cursor: pointer; }
+.content { min-height: 0; padding: 8px 22px 24px; overflow-y: auto; }
+.section { padding-top: 18px; }
+.sectionTitle { display: flex; align-items: center; justify-content: space-between; margin-bottom: 10px; }
+.sectionTitle h3 { margin: 0; font-size: 14px; }
+.sectionTitle span { color: var(--text-muted); font-size: 11px; }
+.sectionTitle button,
+.card button,
+.groupCard button { display: inline-flex; min-height: var(--control-height-compact); padding: 0 9px; align-items: center; border: 1px solid var(--border); border-radius: var(--control-radius-compact); color: var(--text-primary); background: var(--surface); cursor: pointer; gap: 5px; font: inherit; font-size: 11px; }
+.cards { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 8px; }
+.card { display: grid; grid-template-columns: 38px minmax(0, 1fr) auto auto auto; align-items: center; gap: 9px; padding: 9px; border: 1px solid var(--border); border-radius: 10px; }
+.card img { width: 38px; height: 38px; border-radius: 6px; object-fit: cover; }
+.card > div { display: grid; min-width: 0; gap: 2px; }
+.card strong { overflow: hidden; font-size: 13px; text-overflow: ellipsis; white-space: nowrap; }
+.card small { color: var(--text-muted); font-size: 10px; }
+.contactNameInput { min-width: 0; width: 100%; height: var(--control-height-compact); padding: 0 7px; border: 1px solid var(--accent); border-radius: var(--control-radius-compact); font: inherit; font-size: 13px; }
+.groups { display: grid; gap: 8px; }
+.groupCard { display: grid; grid-template-columns: minmax(0, 1fr) auto auto; align-items: center; gap: 8px; padding: 10px 12px; border: 1px solid var(--border); border-radius: 10px; }
+.groupCard > div { display: flex; align-items: baseline; gap: 8px; }
+.groupCard strong { font-size: 13px; }
+.groupCard span { color: var(--text-muted); font-size: 11px; }
+.card .deleteButton,
+.groupCard .deleteButton,
+.card .iconButton { width: var(--control-height-compact); padding: 0; justify-content: center; }
+.card .deleteButton,
+.groupCard .deleteButton { color: var(--danger); }
+.empty,
+.loading { padding: 18px; border-radius: 9px; color: var(--text-muted); background: var(--surface-subtle); font-size: 12px; text-align: center; }
+.loading { margin: 14px 22px 0; }
+.error { margin: 14px 22px 0; padding: 9px 11px; border-radius: 8px; color: #b42318; background: #fef3f2; font-size: 12px; }
+@media (max-width: 640px) {
+  .overlay { padding: 0; align-items: end; }
+  .dialog { max-height: 92vh; border-radius: 18px 18px 0 0; }
+  .cards { grid-template-columns: 1fr; }
+}

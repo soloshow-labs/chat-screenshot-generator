@@ -1,0 +1,17 @@
+.page { min-height: 100dvh; display: grid; place-items: center; padding: 24px; background: #f5f7f9; color: #1b2028; }
+.card { width: min(100%, 620px); padding: 32px; border: 1px solid #e1e5e9; border-radius: 20px; background: #fff; box-shadow: 0 18px 50px rgb(31 42 54 / 10%); }
+.card h1 { margin: 18px 0 10px; font-size: 24px; line-height: 1.25; }
+.card > p { margin: 0 0 22px; color: #647080; line-height: 1.7; }
+.actions { display: flex; flex-wrap: wrap; gap: 10px; }
+.actions button,
+.fallback button { min-height: 40px; padding: 0 16px; border: 1px solid #07964f; border-radius: 8px; background: #07a85a; color: #fff; cursor: pointer; font: inherit; }
+.actions button + button { background: #fff; color: #087d46; }
+.actions button:disabled { cursor: default; opacity: .5; }
+.actions button:focus-visible,
+.fallback button:focus-visible,
+.details summary:focus-visible { outline: 3px solid #73d7a6; outline-offset: 3px; }
+.fallback { margin-top: 18px; padding: 14px; border: 1px solid #f0c36c; border-radius: 10px; background: #fff8e8; }
+.fallback p { margin: 0 0 12px; color: #765414; line-height: 1.6; }
+.details { margin-top: 22px; color: #647080; }
+.details summary { width: fit-content; cursor: pointer; }
+.details pre { max-height: 220px; overflow: auto; padding: 12px; border-radius: 8px; background: #f3f5f7; color: #2a313a; font: 12px/1.55 ui-monospace, SFMono-Regular, Menlo, monospace; white-space: pre-wrap; overflow-wrap: anywhere; }

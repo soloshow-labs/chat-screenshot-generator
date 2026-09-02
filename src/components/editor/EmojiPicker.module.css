@@ -1,0 +1,14 @@
+.control { position: relative; min-width: 0; }
+.action { min-height: var(--control-height-compact); border: 1px solid var(--border); border-radius: 6px; padding: 4px 9px; background: var(--surface); color: var(--text-primary); font: inherit; font-size: 12px; cursor: pointer; }
+.action:disabled, .grid button:disabled { cursor: default; opacity: .55; }
+.action:focus-visible, .grid button:focus-visible, .search:focus-visible { outline: 2px solid var(--brand); outline-offset: 2px; }
+.panel { min-width: 0; margin-top: 8px; padding: 10px; border: 1px solid var(--border); border-radius: 8px; background: var(--surface); }
+.heading { display: flex; justify-content: space-between; align-items: center; gap: 8px; margin-bottom: 8px; color: var(--text-muted); font-size: 12px; }
+.search { display: block; box-sizing: border-box; width: 100%; min-width: 0; height: var(--control-height-compact); border: 1px solid var(--border-strong); border-radius: 6px; padding: 5px 7px; background: var(--surface); color: var(--text-primary); font: inherit; font-size: 12px; }
+.results { max-height: min(320px, 45vh); overflow-y: auto; overscroll-behavior: contain; }
+.sectionHeading { margin: 10px 0 5px; font-size: 12px; font-weight: 500; color: var(--text-muted); }
+.grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(44px, 100%), 1fr)); gap: 4px; min-width: 0; }
+.grid button { min-width: 0; display: grid; justify-items: center; gap: 3px; border: 0; border-radius: 5px; background: transparent; color: var(--text-primary); padding: 5px 2px; font-size: 12px; cursor: pointer; }
+.grid button:hover { background: var(--surface-muted); }
+.grid span { max-width: 100%; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.empty { margin: 10px 0; color: var(--text-muted); font-size: 12px; }

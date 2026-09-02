@@ -1,0 +1,52 @@
+:root {
+  --app-bg: #f3f5f7;
+  --panel-bg: #ffffff;
+  --surface: #ffffff;
+  --surface-subtle: #f2f4f5;
+  --surface-muted: #f0f5f2;
+  --workspace-bg: #eef1f3;
+  --preview-bg: #e5e9ed;
+  --text-primary: #171a1f;
+  --text-secondary: #626a73;
+  --text-muted: #626a73;
+  --border: #e2e6ea;
+  --border-strong: #d5dbe0;
+  --accent: #07c160;
+  --brand: #07c160;
+  --brand-strong: #078944;
+  --brand-accessible: #06783c;
+  --brand-hover: #07a855;
+  --brand-deep: #09984f;
+  --link: #2563eb;
+  --text-on-accent: #ffffff;
+  --danger: #d64545;
+
+  /* Semantic typography */
+  --font-size-app-title: 19px;
+  --font-size-section-title: 15px;
+  --font-size-dialog-title: 16px;
+  --font-weight-title: 650;
+  --line-height-title: 1.4;
+
+  /* Shared component sizing */
+  --control-height-compact: 32px;
+  --control-height-toolbar: 38px;
+  --control-height-icon: 28px;
+  --control-radius-compact: 7px;
+  --dialog-padding: 24px;
+  --dialog-radius: 14px;
+  --dialog-shadow: 0 24px 80px rgb(0 0 0 / 20%);
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC", "Microsoft YaHei", sans-serif;
+  color: var(--text-primary);
+  background: var(--app-bg);
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+}
+
+@media (max-width: 760px) {
+  :root {
+    --control-height-compact: 40px;
+    --control-height-toolbar: 40px;
+    --control-height-icon: 40px;
+  }
+}

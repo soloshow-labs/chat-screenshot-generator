@@ -1,0 +1,109 @@
+.overlay {
+  position: fixed;
+  z-index: 120;
+  inset: 0;
+  display: grid;
+  padding: 20px;
+  place-items: center;
+  background: rgb(15 20 25 / 48%);
+}
+
+.dialog {
+  width: min(440px, 100%);
+  max-height: calc(100dvh - 40px);
+  overflow: auto;
+  padding: var(--dialog-padding);
+  border-radius: var(--dialog-radius);
+  background: var(--surface);
+  box-shadow: var(--dialog-shadow);
+  color: var(--text-primary);
+  font-size: 13px;
+}
+
+.header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 16px;
+}
+
+.header h2 {
+  margin: 0;
+  font-size: var(--font-size-dialog-title);
+  font-weight: var(--font-weight-title);
+  line-height: var(--line-height-title);
+}
+
+.header p {
+  margin: 5px 0 0;
+  color: var(--text-muted);
+  line-height: 1.5;
+}
+
+.header > button {
+  display: grid;
+  width: var(--control-height-compact);
+  height: var(--control-height-compact);
+  flex: 0 0 auto;
+  padding: 0;
+  border: 1px solid var(--border);
+  border-radius: var(--control-radius-compact);
+  place-items: center;
+  background: var(--surface-subtle);
+  color: var(--text-primary);
+}
+
+.issueList {
+  display: grid;
+  gap: 8px;
+  margin: 18px 0 0;
+  padding: 0;
+  list-style: none;
+}
+
+.issueList li {
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr);
+  gap: 9px;
+  padding: 10px 11px;
+  border: 1px solid #eadfbd;
+  border-radius: 8px;
+  background: #fffaf0;
+  line-height: 1.5;
+}
+
+.issueList li[data-severity='error'] {
+  border-color: #efcece;
+  background: #fff5f5;
+}
+
+.issueList strong { color: #8a5b00; }
+.issueList li[data-severity='error'] strong { color: var(--danger); }
+.issueList span { overflow-wrap: anywhere; }
+
+.actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 8px;
+  margin-top: 20px;
+}
+
+.actions button {
+  height: var(--control-height-compact);
+  padding: 0 11px;
+  border: 1px solid var(--border);
+  border-radius: var(--control-radius-compact);
+  font: inherit;
+  font-size: 12px;
+  font-weight: 650;
+}
+
+.dialog button:disabled { cursor: wait; opacity: .5; }
+
+.secondary { background: var(--surface-subtle); color: var(--text-primary); }
+.primary { border-color: var(--accent) !important; background: var(--accent); color: var(--text-on-accent); }
+
+@media (max-width: 520px) {
+  .overlay { padding: 10px; }
+  .dialog { padding: 16px; }
+}

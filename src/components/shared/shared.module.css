@@ -1,0 +1,89 @@
+.backdrop {
+  position: fixed;
+  z-index: 50;
+  inset: 0;
+  display: grid;
+  padding: 20px;
+  place-items: center;
+  background: rgb(15 20 25 / 48%);
+}
+
+.dialog {
+  width: min(420px, 100%);
+  padding: var(--dialog-padding);
+  border-radius: var(--dialog-radius);
+  background: var(--surface);
+  box-shadow: var(--dialog-shadow);
+}
+
+.dialog h2 {
+  margin: 0 0 10px;
+  font-size: var(--font-size-dialog-title);
+  font-weight: var(--font-weight-title);
+  line-height: var(--line-height-title);
+}
+
+.dialogBody {
+  color: var(--text-secondary);
+  font-size: 13px;
+  line-height: 1.55;
+}
+
+.dialogBody label {
+  display: grid;
+  margin-top: 14px;
+  gap: 6px;
+  color: var(--text-primary);
+}
+
+.dialogBody select {
+  height: var(--control-height-compact);
+  padding: 0 9px;
+  border: 1px solid var(--border);
+  border-radius: var(--control-radius-compact);
+  background: var(--surface);
+}
+
+.dialogActions {
+  display: flex;
+  justify-content: flex-end;
+  margin-top: 22px;
+  gap: 9px;
+}
+
+.dialogActions button {
+  min-height: var(--control-height-compact);
+  padding: 0 11px;
+  border: 0;
+  border-radius: var(--control-radius-compact);
+  font-size: 12px;
+  font-weight: 650;
+}
+
+.secondaryButton {
+  background: #eef1f3;
+  color: var(--text-primary);
+}
+
+.primaryButton {
+  background: var(--accent);
+  color: var(--text-on-accent);
+}
+
+.dangerButton {
+  background: var(--danger);
+  color: var(--text-on-accent);
+}
+
+.toast {
+  position: fixed;
+  z-index: 40;
+  right: 20px;
+  bottom: 20px;
+  padding: 10px 14px;
+  border-radius: 8px;
+  background: #2b3238;
+  color: var(--text-on-accent);
+  box-shadow: 0 10px 24px rgb(19 26 33 / 20%);
+  font-size: 13px;
+}

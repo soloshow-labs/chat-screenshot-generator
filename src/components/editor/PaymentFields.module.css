@@ -1,0 +1,9 @@
+.fields { display: flex; flex-wrap: wrap; align-items: flex-end; gap: 10px; margin-top: 8px; font-size: 12px; }
+.fields label { display: flex; flex: 1 1 160px; flex-direction: column; gap: 4px; min-width: 0; }
+.fields label > span { color: var(--text-muted); font-size: 10px; font-weight: 650; }
+.fields input, .fields select { width: 100%; min-width: 0; height: var(--control-height-compact); padding: 0 8px; border: 1px solid var(--border-strong); border-radius: 7px; background: var(--surface); color: var(--text-primary); font: inherit; }
+.actions { display: flex; flex: 1 1 100%; flex-wrap: wrap; gap: 8px; }
+.actions button { height: var(--control-height-compact); padding: 0 10px; border: 1px solid color-mix(in srgb, var(--brand) 42%, var(--surface)); border-radius: 7px; background: color-mix(in srgb, var(--brand) 8%, var(--surface)); color: var(--brand-strong); cursor: pointer; font: inherit; }
+.actions button:disabled { cursor: not-allowed; opacity: .48; }
+.roleSummary, .hint { flex-basis: 100%; margin: 0; color: var(--text-muted); font-size: 11px; line-height: 1.5; }
+.roleSummary { color: var(--text-primary); font-size: 12px; font-weight: 650; }

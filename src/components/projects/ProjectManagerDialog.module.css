@@ -1,0 +1,31 @@
+.overlay { position: fixed; inset: 0; z-index: 100; display: grid; place-items: center; padding: 20px; background: #0006; }
+.dialog { width: min(860px, 100%); max-height: 90dvh; overflow: auto; padding: var(--dialog-padding); border-radius: var(--dialog-radius); background: var(--surface); color: var(--text-primary); box-shadow: var(--dialog-shadow); font-size: 13px; line-height: 1.6; }
+.dialog header, .sectionHeader { display: flex; align-items: center; justify-content: space-between; gap: 12px; }
+.dialog header { margin-bottom: 16px; }
+.dialog h2 { margin: 0; font-size: var(--font-size-dialog-title); font-weight: var(--font-weight-title); line-height: var(--line-height-title); }
+.dialog h3 { margin: 8px 0; font-size: 13px; font-weight: 650; }
+.dialog header p, .muted { margin: 2px 0 0; color: var(--text-muted); }
+.dialog button { min-height: var(--control-height-compact); padding: 0 10px; border: 1px solid var(--border); border-radius: var(--control-radius-compact); background: var(--surface-subtle); color: var(--text-primary); font: inherit; font-size: 12px; cursor: pointer; }
+.dialog button:hover:not(:disabled) { border-color: var(--brand); }
+.dialog button:disabled { opacity: .5; cursor: not-allowed; }
+.dialog label { display: grid; gap: 6px; margin: 10px 0; font-size: 12px; }
+.dialog input { width: 100%; height: var(--control-height-compact); padding: 0 8px; border: 1px solid var(--border-strong); border-radius: 7px; background: var(--surface); color: var(--text-primary); font: inherit; font-size: 12px; }
+.dialog [role='alert'] { color: var(--danger); }
+.layout { display: grid; grid-template-columns: minmax(220px, .8fr) minmax(300px, 1.2fr); gap: 16px; }
+.projectList, .details, .backup, .storage { padding: 12px; border: 1px solid var(--border); border-radius: 10px; }
+.projectCards { display: grid; gap: 6px; max-height: 300px; overflow: auto; margin-top: 8px; }
+.projectCards button { display: grid; height: auto; padding: 9px 10px; text-align: left; }
+.projectCards span, .projectCards em { color: var(--text-muted); font-size: 11px; font-style: normal; }
+.projectCards em { color: var(--brand-accessible); }
+.projectCards .selectedProject { border-color: var(--brand-accessible); background: #effaf4; }
+.actions { display: flex; flex-wrap: wrap; gap: 6px; }
+.checkpoints { display: grid; gap: 6px; padding: 0; margin: 8px 0 0; list-style: none; }
+.checkpoints li { display: flex; align-items: center; justify-content: space-between; gap: 10px; padding: 7px 0; border-top: 1px solid var(--border); }
+.checkpoints span { display: grid; }
+.checkpoints small { color: var(--text-muted); }
+.backup, .storage { margin-top: 14px; }
+.backup summary { cursor: pointer; font-weight: 650; }
+.backup input[type='file'] { padding: 0; }
+.backup input[type='file']::file-selector-button { height: 30px; margin-right: 10px; border: 0; border-right: 1px solid var(--border); background: var(--surface-subtle); color: var(--text-primary); font: inherit; }
+.storage p { margin: 6px 0; }
+@media (max-width: 640px) { .overlay { padding: 10px; } .dialog { padding: 16px; } .layout { grid-template-columns: 1fr; } .projectCards { max-height: 180px; } }

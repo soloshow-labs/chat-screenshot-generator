@@ -1,0 +1,11 @@
+.overlay { position: fixed; inset: 0; z-index: 100; display: grid; place-items: center; padding: 20px; background: #0006; }
+.dialog { width: min(420px, 100%); padding: var(--dialog-padding); border-radius: var(--dialog-radius); background: var(--surface); color: var(--text-primary); box-shadow: var(--dialog-shadow); font-size: 13px; line-height: 1.5; }
+.dialog h2 { margin: 0 0 8px; font-size: var(--font-size-dialog-title); font-weight: var(--font-weight-title); line-height: var(--line-height-title); }
+.dialog p { margin: 8px 0; color: var(--text-muted); }
+.dialog label { display: grid; gap: 6px; margin: 12px 0; font-size: 12px; }
+.dialog input, .dialog select { box-sizing: border-box; width: 100%; height: var(--control-height-compact); padding: 0 8px; border: 1px solid var(--border-strong); border-radius: var(--control-radius-compact); background: var(--surface); color: var(--text-primary); font: inherit; font-size: 12px; }
+.dialog .toggle { display: flex; align-items: center; gap: 7px; }
+.dialog .toggle input { width: auto; height: auto; margin: 0; }
+.dialog [role='alert'] { color: var(--danger); }
+.actions { display: flex; justify-content: flex-end; gap: 8px; margin-top: 18px; }
+.actions button { height: var(--control-height-compact); padding: 0 10px; border: 1px solid var(--border); border-radius: var(--control-radius-compact); background: var(--surface-subtle); color: var(--text-primary); font: inherit; font-size: 12px; cursor: pointer; }
